@@ -125,14 +125,14 @@ export function AgentPreview({ agentDetails }: IAgentPreviewProps): ReactNode {
   const displayName =
     normalizedName && normalizedName !== "agent-template-assistant"
       ? normalizedName
-      : "Lizenzberater";
+      : "Concat AG";
 
   const rawLogo = agentDetails.metadata?.logo;
   const logoString =
     typeof rawLogo === "string" && rawLogo.trim().length > 0
       ? rawLogo.trim()
       : undefined;
-  const displayLogo = logoString ?? "LizenzberaterIcon.png";
+  const displayLogo = logoString ?? "ConcatAG_Logo_Black.svg";
 
   const loadChatHistory = async () => {
     try {
@@ -543,7 +543,7 @@ export function AgentPreview({ agentDetails }: IAgentPreviewProps): ReactNode {
           {displayName ? (
             <div className={styles.agentIconContainer}>
               <AgentIcon
-                alt=""
+                alt={displayName || "Concat AG"}
                 iconClassName={styles.agentIcon}
                 iconName={displayLogo}
               />
