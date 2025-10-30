@@ -88,14 +88,14 @@ export function AgentPreview({ agentDetails }: IAgentPreviewProps): ReactNode {
   const displayName =
     normalizedName && normalizedName !== "agent-template-assistant"
       ? normalizedName
-      : "Lizenzberater";
+      : "Concat AG";
 
   const rawLogo = agentDetails.metadata?.logo;
   const logoString =
     typeof rawLogo === "string" && rawLogo.trim().length > 0
       ? rawLogo.trim()
       : undefined;
-  const displayLogo = logoString ?? "LizenzberaterIcon.png";
+  const displayLogo = logoString ?? "ConcatAG_Logo_Black.svg";
 
   const loadChatHistory = async () => {
     try {
@@ -484,13 +484,10 @@ export function AgentPreview({ agentDetails }: IAgentPreviewProps): ReactNode {
           {displayName ? (
             <div className={styles.agentIconContainer}>
               <AgentIcon
-                alt=""
+                alt={displayName || "Concat AG"}
                 iconClassName={styles.agentIcon}
                 iconName={displayLogo}
               />
-              <Body1 as="h1" className={styles.agentName}>
-                {displayName}
-              </Body1>
             </div>
           ) : (
             <div className={styles.agentIconContainer}>
@@ -539,12 +536,12 @@ export function AgentPreview({ agentDetails }: IAgentPreviewProps): ReactNode {
               {isEmpty && (
                 <div className={styles.emptyChatContainer}>
                   <AgentIcon
-                    alt=""
+                    alt="Lizenzberater"
                     iconClassName={styles.emptyStateAgentIcon}
-                    iconName={displayLogo}
+                    iconName="LizenzberaterIcon.png"
                   />
                   <Caption1 className={styles.agentName}>
-                    {displayName}
+                    Lizenzberater
                   </Caption1>
                   <Title3>How can I help you today?</Title3>
                 </div>
