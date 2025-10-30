@@ -553,7 +553,7 @@ export function AgentPreview({ agentDetails }: IAgentPreviewProps): ReactNode {
             icon={<ChatRegular aria-hidden={true} />}
             onClick={newThread}
           >
-            New Chat
+            Neuer Chat
           </Button>
           <MenuButton
             menuButtonText=""
@@ -583,7 +583,7 @@ export function AgentPreview({ agentDetails }: IAgentPreviewProps): ReactNode {
                   <Caption1 className={styles.agentName}>
                     {displayName}
                   </Caption1>
-                  <Title3>How can I help you today?</Title3>
+                  <Title3>Wie kann ich Ihnen helfen?</Title3>
                 </div>
               )}
               <AgentPreviewChatBot
