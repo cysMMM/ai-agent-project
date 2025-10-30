@@ -50,7 +50,12 @@ export function AssistantMessage({
           )}
         </span>
       }
-      avatar={<AgentIcon alt="" iconName={agentLogo} />}
+      avatar={
+        <AgentIcon
+          alt={agentName ?? "Lizenzberater"}
+          iconName={agentLogo ?? "LizenzberaterIcon.png"}
+        />
+      }
       className={styles.copilotChatMessage}
       disclaimer={<span>AI-generated content may be incorrect</span>}
       footnote={
@@ -77,7 +82,7 @@ export function AssistantMessage({
         </>
       }
       loadingState={loadingState}
-      name={agentName ?? "Bot"}
+      name={agentName ?? "Lizenzberater"}
     >
       <Suspense fallback={<Spinner size="small" />}>
         <Markdown content={message.content} />

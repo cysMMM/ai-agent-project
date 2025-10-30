@@ -51,6 +51,10 @@ interface IAnnotation {
   end_index: number;
 }
 
+const DEFAULT_AGENT_NAME = "Lizenzberater";
+const DEFAULT_HEADER_LOGO = "ConcatAG_Logo_Black.svg";
+const DEFAULT_CHAT_LOGO = "LizenzberaterIcon.png";
+
 const preprocessContent = (
   content: string,
   annotations?: IAnnotation[]
@@ -88,14 +92,21 @@ export function AgentPreview({ agentDetails }: IAgentPreviewProps): ReactNode {
   const displayName =
     normalizedName && normalizedName !== "agent-template-assistant"
       ? normalizedName
-      : "Lizenzberater";
+      : DEFAULT_AGENT_NAME;
 
-  const rawLogo = agentDetails.metadata?.logo;
-  const logoString =
-    typeof rawLogo === "string" && rawLogo.trim().length > 0
-      ? rawLogo.trim()
+  const rawHeaderLogo = agentDetails.metadata?.logo;
+  const headerLogoString =
+    typeof rawHeaderLogo === "string" && rawHeaderLogo.trim().length > 0
+      ? rawHeaderLogo.trim()
       : undefined;
-  const displayLogo = logoString ?? "LizenzberaterIcon.png";
+  const headerLogo = headerLogoString ?? DEFAULT_HEADER_LOGO;
+
+  const rawChatLogo = agentDetails.metadata?.chatLogo;
+  const chatLogoString =
+    typeof rawChatLogo === "string" && rawChatLogo.trim().length > 0
+      ? rawChatLogo.trim()
+      : undefined;
+  const displayChatLogo = chatLogoString ?? DEFAULT_CHAT_LOGO;
 
   const loadChatHistory = async () => {
     try {
@@ -484,13 +495,10 @@ export function AgentPreview({ agentDetails }: IAgentPreviewProps): ReactNode {
           {displayName ? (
             <div className={styles.agentIconContainer}>
               <AgentIcon
-                alt=""
+                alt={displayName || DEFAULT_AGENT_NAME}
                 iconClassName={styles.agentIcon}
-                iconName={displayLogo}
+                iconName={headerLogo}
               />
-              <Body1 as="h1" className={styles.agentName}>
-                {displayName}
-              </Body1>
             </div>
           ) : (
             <div className={styles.agentIconContainer}>
@@ -539,19 +547,19 @@ export function AgentPreview({ agentDetails }: IAgentPreviewProps): ReactNode {
               {isEmpty && (
                 <div className={styles.emptyChatContainer}>
                   <AgentIcon
-                    alt=""
+                    alt="Lizenzberater"
                     iconClassName={styles.emptyStateAgentIcon}
-                    iconName={displayLogo}
+                    iconName="LizenzberaterIcon.png"
                   />
                   <Caption1 className={styles.agentName}>
-                    {displayName}
+                    Lizenzberater
                   </Caption1>
                   <Title3>How can I help you today?</Title3>
                 </div>
               )}
               <AgentPreviewChatBot
                 agentName={displayName}
-                agentLogo={displayLogo}
+                agentLogo={displayChatLogo}
                 chatContext={chatContext}
               />
             </>
